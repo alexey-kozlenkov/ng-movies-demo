@@ -7,6 +7,7 @@ const MOVIES_SPEC = [
     releaseDate: '1970-01-01',
 
     isFavorite: false,
+    countryCode: 'it',
   },
   {
     title: 'Dark Knight',
@@ -14,6 +15,7 @@ const MOVIES_SPEC = [
     releaseDate: '2009-01-01',
 
     isFavorite: true,
+    countryCode: 'gt',
   },
   {
     title: 'Deadpool',
@@ -21,6 +23,7 @@ const MOVIES_SPEC = [
     releaseDate: '2015-02-12',
 
     isFavorite: true,
+    countryCode: 'uk',
   },
   {
     title: 'Pulp Fiction',
@@ -28,6 +31,15 @@ const MOVIES_SPEC = [
     releaseDate: '1994-01-01',
 
     isFavorite: false,
+    countryCode: 'us',
+  },
+  {
+    title: 'Redirected',
+    director: 'Emilis Velivis',
+    releaseDate: '2013-01-01',
+
+    isFavorite: true,
+    countryCode: 'lt',
   },
 ];
 

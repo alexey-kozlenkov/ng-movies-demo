@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { FavoriteMovieComponent } from './fav-movie/fav-movie.component';
 import { MovieTitleComponent } from './movie-title/movie-title.component';
 import { HighlighterDirective } from './movie-title/highlight.directive';
+import { CountryToFlagPipe } from './movie-title/country-flag.pipe';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { HighlighterDirective } from './movie-title/highlight.directive';
     FavoriteMovieComponent,
     MovieTitleComponent,
     HighlighterDirective,
+    CountryToFlagPipe
   ],
   imports: [
     BrowserModule,
