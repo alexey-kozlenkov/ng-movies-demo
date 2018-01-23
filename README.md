@@ -15,8 +15,7 @@ Covered topics:
 ## Day 2: User input & Template drive forms
 
 Supply an app with example of directive and pipe.
-
-Add an example of template drive forms.
+Add an example of template driven forms.
 
 Covered topics:
 
