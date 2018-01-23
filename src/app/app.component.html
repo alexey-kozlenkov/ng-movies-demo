@@ -1,7 +1,5 @@
 <div *ngFor="let movie of movies; let i = index; let odd = odd;">
-  <h4>
-    #{{ i }} - {{ movie.title }}
-  </h4>
+  <mov-title [movie]="movie" ></mov-title>
   <div>Director: {{ movie.director }}</div>
   <div>Release date: {{ movie.releaseDate }}</div>
 

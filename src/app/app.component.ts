@@ -20,14 +20,14 @@ const MOVIES_SPEC = [
     director: 'Guy Richy',
     releaseDate: '2015-02-12',
 
-    isFavorite: false,
+    isFavorite: true,
   },
   {
     title: 'Pulp Fiction',
     director: 'Quentin Tarantino',
     releaseDate: '1994-01-01',
 
-    isFavorite: true,
+    isFavorite: false,
   },
 ];
 
