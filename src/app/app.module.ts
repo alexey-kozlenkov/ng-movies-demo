@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -12,6 +12,7 @@ import { CountryToFlagPipe } from './movie-title/country-flag.pipe';
 import { MovieSearchComponent } from './search-movie/search-movie.component';
 import { SignUpComponent } from './sign-up/signup.component';
 import { SignupTemplateComponent, NameDirective } from './sign-up/sing-up-template/signup-template.component';
+import { SignUpReactiveComponent } from './sign-up/sing-up-reactive/signup-reactive.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SignupTemplateComponent, NameDirective } from './sign-up/sing-up-templa
     MovieSearchComponent,
     SignUpComponent,
     SignupTemplateComponent,
+    SignUpReactiveComponent,
     NameDirective
   ],
   imports: [
@@ -32,6 +34,7 @@ import { SignupTemplateComponent, NameDirective } from './sign-up/sing-up-templa
     AppRoutingModule,
 
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

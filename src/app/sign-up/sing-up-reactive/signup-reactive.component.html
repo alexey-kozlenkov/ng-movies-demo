@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+  <div>
+    <label>Name: </label>
+    <input formControlName="name" type="text" />
+  </div>
+  <div>
+    <label>Surname: </label>
+    <input formControlName="surname" type="text" />
+  </div>
+  <div formGroupName="account">
+    <div>
+      <label>Email: </label>
+      <input formControlName="email" type="text" />
+    </div>
+    <div>
+      <label>Password: </label>
+      <input formControlName="password" type="text" />
+    </div>
+    <div>
+      <label>Confirm password: </label>
+      <input formControlName="confirmPassword" type="text" />
+    </div>
+  </div>
+</form>
+
+<button (click)="onReset()">Reset</button>
+
+<p>Value: {{ form.value | json }}</p>
+<p>Status: {{ form.status }}</p>
+<p>Account errors: {{ form.get('account').errors | json }}</p>
+<p>Email errors: {{ form.get('account').get('email').errors | json }}</p>

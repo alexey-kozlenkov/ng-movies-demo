@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'sign-up',
   template: `
     <signup-template></signup-template>
+    <hr/>
+    <signup-reactive></signup-reactive>
   `
 })
 
