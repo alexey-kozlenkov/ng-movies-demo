@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -15,6 +16,7 @@ import { SignUpReactiveComponent } from './sign-up/sing-up-reactive/signup-react
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { PageMovieListComponent } from './page-movie-list/page-movie-list.component';
 import { LanguageToFlagPipe } from './movie-card/country-flag.pipe';
+import { MovieApiService } from './service/movie-api.service';
 
 
 @NgModule({
@@ -38,8 +40,11 @@ import { LanguageToFlagPipe } from './movie-card/country-flag.pipe';
 
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    MovieApiService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../types/movie';
+import { MovieApiService } from '../service/movie-api.service';
 
 @Component({
   selector: 'movie-list',
@@ -7,19 +8,12 @@ import { Movie } from '../types/movie';
 })
 export class PageMovieListComponent implements OnInit {
 
-  movies: Movie[] = [
-    {
-      id: 0,
-      title: 'Dark Knight',
-      originalTitle: 'Dark Knight',
-      overview: 'Christopher Nolan is a genius',
-      releaseDate: '2009-01-01',
-      originalLanguage: 'en',
-      voteAverage: 5,
-    },
-  ];
+  movies: Movie[];
 
-  constructor() { }
+  constructor(private movieApi: MovieApiService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.movieApi.discoverMovies()
+      .subscribe(movies => this.movies = movies);
+  }
 }
