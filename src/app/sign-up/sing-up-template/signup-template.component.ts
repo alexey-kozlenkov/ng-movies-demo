@@ -18,7 +18,7 @@ function isPasswordsMatching(control: AbstractControl) {
     useValue: isPasswordsMatching
   }]
 })
-export class NameDirective {
+export class PasswordMatchDirective {
   constructor() { }
 }
 
