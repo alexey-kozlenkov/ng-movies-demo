@@ -1,17 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-const countryCodeToFlag = {
-  'us': '🇺🇸',
-  'uk': '🇬🇧',
+const languageCodeToFlag = {
+  'en': '🇺🇸',
   'it': '🇮🇹',
   'lt': '🇱🇹',
 };
 
 @Pipe({
-  name: 'countryToFlag'
+  name: 'languageToFlag'
 })
-export class CountryToFlagPipe implements PipeTransform {
+export class LanguageToFlagPipe implements PipeTransform {
   transform(code: string): string {
-    return countryCodeToFlag[code] || '🤷‍♀️';
+    return languageCodeToFlag[code] || '🤷‍♀️';
   }
 }

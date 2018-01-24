@@ -14,6 +14,7 @@ import { SignUpReactiveComponent } from './sign-up/sing-up-reactive/signup-react
 
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { PageMovieListComponent } from './page-movie-list/page-movie-list.component';
+import { LanguageToFlagPipe } from './movie-card/country-flag.pipe';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { PageMovieListComponent } from './page-movie-list/page-movie-list.compon
     PasswordMatchDirective,
 
     MovieCardComponent,
+    LanguageToFlagPipe,
     PageMovieListComponent,
     FavoriteMovieComponent,
     MovieSearchComponent,
