@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Movie, IApiMovie, mapApiMovie } from '../types/movie';
+import { Movie, IApiMovie, mapApiMovie } from '../../types/movie';
 import { map, filter } from 'rxjs/operators';
 
 const API_KEY = '8d254113d9a3eb949441d7c9468ed724';
