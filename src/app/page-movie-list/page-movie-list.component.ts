@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '../types/movie';
+import { MovieCard } from '../types/movie';
 import { MovieApiService } from '../service';
 
 @Component({
@@ -8,7 +8,7 @@ import { MovieApiService } from '../service';
 })
 export class PageMovieListComponent implements OnInit {
 
-  movies: Movie[];
+  movies: MovieCard[];
 
   constructor(private movieApi: MovieApiService) { }
 

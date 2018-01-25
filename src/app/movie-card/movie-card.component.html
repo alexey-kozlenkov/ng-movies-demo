@@ -5,4 +5,11 @@
   <div>{{ movie.overview }}</div>
   <div>Release Date: {{ movie.releaseDate }}</div>
   <div>Rank: {{ movie.voteAverage }}</div>
+
+  <button (click)="onShowDetails()">
+    {{ detailsShown ? 'Hide Details' : 'Show Details'}}
+  </button>
+  <movie-details *ngIf="detailsShown"
+    [movieId]="movie.id"
+  ></movie-details>
 </div>
