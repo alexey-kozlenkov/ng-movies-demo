@@ -12,6 +12,7 @@ const TMDB_IMAGE_ROOT = 'https://image.tmdb.org/t/p/w500';
   templateUrl: 'movie-details.component.html'
 })
 export class MovieDetailsComponent implements OnInit {
+  movieId: number;
   moviePosterSrc: Observable<string>;
 
   constructor(
@@ -22,10 +23,15 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit() {
     this.moviePosterSrc = this.route.params.pipe(
       map((params: Params) => params.movieId),
+      tap(movieId => this.movieId = movieId),
       switchMap(movieId => this.movieApi.loadMovieDetails(movieId).pipe(
         map(movieDetails => `${TMDB_IMAGE_ROOT}${movieDetails.posterPath}`),
         startWith('https://media.giphy.com/media/kVSu7sIJexuhO/giphy.gif')
       ))
     );
+  }
+
+  onMakeFavorite() {
+    this.movieApi.makeFavorite(this.movieId, true);
   }
 }

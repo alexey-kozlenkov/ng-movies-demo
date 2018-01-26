@@ -10,6 +10,7 @@ import { SignUpModule } from './sign-up/signup.module';
 
 import { AppComponent } from './app.component';
 import { MovieDetailsModule } from './movie-details/movie-details.module';
+import { AuthSuccessModule } from './page-redirect-success/auth-success.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MovieDetailsModule } from './movie-details/movie-details.module';
     BrowserModule,
     AppRoutingModule,
     ServiceModule,
+    AuthSuccessModule,
 
     PageMovieListModule,
     MovieDetailsModule,
