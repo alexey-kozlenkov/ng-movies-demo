@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { MovieCardComponent } from './movie-card.component';
 import { LanguageToFlagPipe } from './country-flag.pipe';
-import { MovieDetailsModule } from '../movie-details/movie-details.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
-    MovieDetailsModule
+    RouterModule,
   ],
   declarations: [
     MovieCardComponent,

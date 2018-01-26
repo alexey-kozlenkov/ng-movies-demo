@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MovieCard } from '../types';
+import { MovieCard } from '../../types/movie';
 
 @Component({
   selector: 'movie-card',
@@ -7,10 +7,4 @@ import { MovieCard } from '../types';
 })
 export class MovieCardComponent {
   @Input() movie: MovieCard;
-
-  detailsShown: boolean;
-
-  onShowDetails() {
-    this.detailsShown = !this.detailsShown;
-  }
 }
