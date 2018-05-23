@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { MovieCard, IApiMovie, mapApiMovieToCard, mapApiMovieToDetails, MovieDetails } from '../../types/movie';
-import { map, filter, delay, tap, switchMap } from 'rxjs/operators';
+import { IApiMovie, mapApiMovieToCard, mapApiMovieToDetails, MovieCard, MovieDetails } from '../../types';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { UserService } from '../user/user.service';
 
 const TMDB_API_KEY = '8d254113d9a3eb949441d7c9468ed724';
@@ -28,7 +28,7 @@ export class MovieApiService {
     ).pipe(
       map(({ request_token }) => request_token),
       map(requestToken => `${TMDB_HOST}/authenticate/${requestToken}?redirect_to=http://localhost:4200/redirect/auth/success`)
-      );
+    );
   }
 
   getAuthUrl() {
