@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { IApiMovie, mapApiMovieToCard, mapApiMovieToDetails, MovieCard, MovieDetails } from '../../types';
+import { Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
+import { IApiMovie, mapApiMovieToCard, mapApiMovieToDetails, MovieCard, MovieDetails } from '../../types';
 import { UserService } from '../user/user.service';
 
 const TMDB_API_KEY = '8d254113d9a3eb949441d7c9468ed724';

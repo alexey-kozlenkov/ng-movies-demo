@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MovieApiService } from '../service/movie-api/movie-api.service';
-import { MovieDetails } from '../types/movie';
-import { tap, map, startWith, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, startWith, switchMap, tap } from 'rxjs/operators';
+import { MovieApiService } from '../service';
 
 const TMDB_IMAGE_ROOT = 'https://image.tmdb.org/t/p/w500';
 
