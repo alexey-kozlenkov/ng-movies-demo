@@ -3,14 +3,10 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { map } from 'rxjs/operators';
-import { IApiMovie, mapApiMovieToCard } from '../../types';
-import { AddMovies, MovieActionType } from './actions';
-
-const TMDB_API_KEY = '8d254113d9a3eb949441d7c9468ed724';
-const TMDB_HOST = 'https://www.themoviedb.org';
-const TMDB_API_HOST = 'https://api.themoviedb.org/3';
+import { map, switchMap } from 'rxjs/operators';
+import { IApiMovie, mapApiMovieToCard, mapApiMovieToDetails } from '../../types';
+import { DiscoverMoviesComplete, LoadMovie, LoadMovieComplete, MovieActionType } from './actions';
+import { TMDB_API_HOST, TMDB_API_KEY } from './constants';
 
 @Injectable()
 export class MoviesEffect {
@@ -24,9 +20,19 @@ export class MoviesEffect {
     )),
     map(({ results }) => results),
     map(movies => movies.map(mapApiMovieToCard)),
-    map(movies => new AddMovies(movies)),
+    map(movies => new DiscoverMoviesComplete(movies)),
   );
 
+  @Effect()
+  loadMovieDetails$: Observable<Action> = this.actions$.pipe(
+    ofType<LoadMovie>(MovieActionType.LOAD_MOVIE),
+    switchMap(({ id }) => this.httpClient.get<IApiMovie>(
+      `${TMDB_API_HOST}/movie/${id}`,
+      { params: { api_key: TMDB_API_KEY } },
+    )),
+    map(mapApiMovieToDetails),
+    map(movie => new LoadMovieComplete(movie)),
+  );
 
   constructor(
     private actions$: Actions,
