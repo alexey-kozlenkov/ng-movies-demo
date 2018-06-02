@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError } from 'rxjs/internal/operators';
 import { map, switchMap } from 'rxjs/operators';
 import { IApiMovie, mapApiMovieToCard, mapApiMovieToDetails } from '../../types';
 import { DiscoverMoviesComplete, LoadMovie, LoadMovieComplete, MovieActionType } from './actions';
@@ -17,10 +18,12 @@ export class MoviesEffect {
     switchMap(() => this.httpClient.get<{ results: IApiMovie[] }>(
       `${TMDB_API_HOST}/discover/movie`,
       { params: { api_key: TMDB_API_KEY } },
+    ).pipe(
+      map(({ results }) => results),
+      map(movies => movies.map(mapApiMovieToCard)),
+      map(movies => new DiscoverMoviesComplete(movies)),
+      catchError(() => EMPTY),
     )),
-    map(({ results }) => results),
-    map(movies => movies.map(mapApiMovieToCard)),
-    map(movies => new DiscoverMoviesComplete(movies)),
   );
 
   @Effect()
@@ -29,9 +32,11 @@ export class MoviesEffect {
     switchMap(({ id }) => this.httpClient.get<IApiMovie>(
       `${TMDB_API_HOST}/movie/${id}`,
       { params: { api_key: TMDB_API_KEY } },
+    ).pipe(
+      map(mapApiMovieToDetails),
+      map(movie => new LoadMovieComplete(movie)),
+      catchError(() => EMPTY),
     )),
-    map(mapApiMovieToDetails),
-    map(movie => new LoadMovieComplete(movie)),
   );
 
   constructor(
