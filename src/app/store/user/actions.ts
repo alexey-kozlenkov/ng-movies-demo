@@ -24,28 +24,22 @@ export class LoadUserAuthUrlSuccess implements Action {
 
 export class LoadUser implements Action {
   readonly type = UserActionTypes.LOAD_USER;
-  requestToken: string;
 
-  constructor(token: string) {
-    this.requestToken = token;
+  constructor(public requestToken: string) {
   }
 }
 
 export class LoadUserSuccess implements Action {
   readonly type = UserActionTypes.LOAD_USER_SUCCESS;
-  user: User;
 
-  constructor(user: User) {
-    this.user = user;
+  constructor(public user: User) {
   }
 }
 
 export class SetSessionId implements Action {
   readonly type = UserActionTypes.SET_SESSION_ID;
-  sessionId: string;
 
-  constructor(sessionId: string) {
-    this.sessionId = sessionId;
+  constructor(public sessionId: string) {
   }
 }
 

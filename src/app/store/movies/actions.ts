@@ -16,19 +16,15 @@ export class DiscoverMovies implements Action {
 
 export class DiscoverMoviesComplete implements Action {
   readonly type = MovieActionType.DISCOVER_MOVIES_COMPLETE;
-  movies: MovieCard[];
 
-  constructor(movies: MovieCard[]) {
-    this.movies = movies;
+  constructor(public movies: MovieCard[]) {
   }
 }
 
 export class LoadMovie implements Action {
   readonly type = MovieActionType.LOAD_MOVIE;
-  id: string;
 
-  constructor(id: string) {
-    this.id = id;
+  constructor(public id: string) {
   }
 }
 
@@ -41,10 +37,8 @@ export class ResetCurrentMovie implements Action {
 
 export class LoadMovieComplete implements Action {
   readonly type = MovieActionType.LOAD_MOVIE_COMPLETE;
-  details: MovieDetails;
 
-  constructor(details: MovieDetails) {
-    this.details = details;
+  constructor(public details: MovieDetails) {
   }
 }
 
