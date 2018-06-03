@@ -35,7 +35,7 @@ export class UserEffects {
       { params: { api_key: TMDB_API_KEY, request_token: action.requestToken } },
     ).pipe(
       map(({ session_id }) => session_id),
-      tap(sessionId => new SetSessionId(sessionId)),
+      tap(sessionId => this.store.dispatch(new SetSessionId(sessionId))),
       switchMap(sessionId => this.httpClient.get<User>(
         `${TMDB_API_HOST}/account`,
         { params: { api_key: TMDB_API_KEY, session_id: sessionId } },

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { filter, startWith } from 'rxjs/internal/operators';
 import { map, tap } from 'rxjs/operators';
 import { AppState } from '../store/app';
-import { getCurrentMoviePoster, LoadMovie, ResetCurrentMovie } from '../store/movies';
+import { getCurrentMoviePoster, LoadMovie, FavCurrentMovie, ResetCurrentMovie } from '../store/movies';
 
 @Component({
   selector: 'movie-details',
@@ -37,7 +37,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   }
 
   onMakeFavorite() {
-    // this.movieApi.makeFavorite(this.movieId, true);
+    this.store.dispatch(new FavCurrentMovie());
   }
 
 }

@@ -7,7 +7,8 @@ export enum MovieActionType {
   LOAD_MOVIE = '[Movies] Load Movie',
   LOAD_MOVIE_COMPLETE = '[Movies] Load Movie Complete',
   RESET_CURRENT_MOVIE = '[Movies] Reset Current Movie',
-  MAKE_CURRENT_MOVIE_FAVORITE = '[Movies] Make Current Movie Favorite',
+  FAV_CURRENT_MOVIE = '[Movies] Favorite Current Movie',
+  FAV_CURRENT_MOVIE_COMPLETE = '[Movies] Favorite Current Movie Complete',
 }
 
 export class DiscoverMovies implements Action {
@@ -30,9 +31,6 @@ export class LoadMovie implements Action {
 
 export class ResetCurrentMovie implements Action {
   readonly type = MovieActionType.RESET_CURRENT_MOVIE;
-
-  constructor() {
-  }
 }
 
 export class LoadMovieComplete implements Action {
@@ -42,11 +40,12 @@ export class LoadMovieComplete implements Action {
   }
 }
 
-export class MakeCurrentMovieFavorite implements Action {
-  readonly type = MovieActionType.MAKE_CURRENT_MOVIE_FAVORITE;
+export class FavCurrentMovie implements Action {
+  readonly type = MovieActionType.FAV_CURRENT_MOVIE;
+}
 
-  constructor() {
-  }
+export class FavCurrentMovieComplete implements Action {
+  readonly type = MovieActionType.FAV_CURRENT_MOVIE_COMPLETE;
 }
 
 export type MovieActions
@@ -55,5 +54,6 @@ export type MovieActions
   | LoadMovie
   | LoadMovieComplete
   | ResetCurrentMovie
-  | MakeCurrentMovieFavorite
+  | FavCurrentMovie
+  | FavCurrentMovieComplete
   ;

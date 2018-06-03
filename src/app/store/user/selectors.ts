@@ -7,3 +7,13 @@ export const getUserAuthUrl = createSelector(
   getUserState,
   state => state.authUrl,
 );
+
+export const getSessionId = createSelector(
+  getUserState,
+  state => state.sessionId,
+);
+
+export const getUserProfile = createSelector(
+  getUserState,
+  state => state.user,
+);

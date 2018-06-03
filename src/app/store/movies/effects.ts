@@ -3,11 +3,18 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { EMPTY, Observable } from 'rxjs';
-import { catchError, mapTo, switchMapTo } from 'rxjs/internal/operators';
+import { catchError, mapTo, withLatestFrom } from 'rxjs/internal/operators';
 import { map, switchMap } from 'rxjs/operators';
 import { IApiMovie, mapApiMovieToCard, mapApiMovieToDetails } from '../../types';
 import { AppState } from '../app';
-import { DiscoverMoviesComplete, LoadMovie, LoadMovieComplete, MovieActionType } from './actions';
+import { getSessionId, getUserProfile } from '../user';
+import {
+  DiscoverMoviesComplete,
+  FavCurrentMovieComplete,
+  LoadMovie,
+  LoadMovieComplete,
+  MovieActionType,
+} from './actions';
 import { TMDB_API_HOST, TMDB_API_KEY } from './constants';
 import { getCurrentMovie } from './selectors';
 
@@ -41,23 +48,26 @@ export class MoviesEffect {
     )),
   );
 
-  // @Effect()
-  // makeCurrentMovieFavorite$: Observable<Action> = this.actions$.pipe(
-  //   ofType(MovieActionType.MAKE_CURRENT_MOVIE_FAVORITE),
-  //   switchMapTo(this.store.select(getCurrentMovie)),
-  //   map(movie => movie.id),
-  //   switchMap((id) => this.httpClient.post(
-  //     `${TMDB_API_HOST}/account/${this.userService.getUserProfile().id}/favorite`,
-  //     {
-  //       media_type: 'movie',
-  //       media_id: id,
-  //       favorite: true,
-  //     },
-  //     { params: { api_key: TMDB_API_KEY, session_id: this.sessionId } },
-  //   ).pipe(
-  //     mapTo({type: 'nope'}),
-  //   )),
-  // );
+  @Effect()
+  makeCurrentMovieFavorite$: Observable<Action> = this.actions$.pipe(
+    ofType(MovieActionType.FAV_CURRENT_MOVIE),
+    withLatestFrom(
+      this.store.select(getCurrentMovie),
+      this.store.select(getSessionId),
+      this.store.select(getUserProfile),
+    ),
+    switchMap(([, movie, sessionId, user]) => this.httpClient.post(
+      `${TMDB_API_HOST}/account/${user.id}/favorite`,
+      {
+        media_type: 'movie',
+        media_id: movie.id,
+        favorite: true,
+      },
+      { params: { api_key: TMDB_API_KEY, session_id: sessionId } },
+    ).pipe(
+      mapTo(new FavCurrentMovieComplete()),
+    )),
+  );
 
   constructor(
     private actions$: Actions,
