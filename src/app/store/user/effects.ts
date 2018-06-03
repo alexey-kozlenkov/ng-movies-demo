@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { switchMapTo } from 'rxjs/internal/operators';
+import { mergeMap, switchMapTo } from 'rxjs/internal/operators';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { User } from '../../types/user';
 import { AppState } from '../app';
 import { TMDB_API_HOST, TMDB_API_KEY, TMDB_HOST } from '../movies/constants';
+import { Go } from '../router';
 import { LoadUser, LoadUserAuthUrlSuccess, LoadUserSuccess, SetSessionId, UserActionTypes } from './actions';
 
 @Injectable()
@@ -39,7 +40,10 @@ export class UserEffects {
         `${TMDB_API_HOST}/account`,
         { params: { api_key: TMDB_API_KEY, session_id: sessionId } },
       ).pipe(
-        map(user => new LoadUserSuccess(user)),
+        mergeMap(user => [
+          new LoadUserSuccess(user),
+          new Go({ path: [''] }),
+        ]),
       )),
     )),
   );
