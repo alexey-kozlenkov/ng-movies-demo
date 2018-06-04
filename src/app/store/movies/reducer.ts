@@ -2,15 +2,14 @@ import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { MovieCard, MovieDetails } from '../../types';
 import { MovieActions, MovieActionType } from './actions';
 
+const movieAdapter = createEntityAdapter<MovieCard>();
+
 export interface MovieState extends EntityState<MovieCard> {
   currentMovie: MovieDetails;
 }
 
-const movieAdapter = createEntityAdapter<MovieCard>();
-
 const initialState = {
   ...movieAdapter.getInitialState(),
-
   currentMovie: null,
 };
 
